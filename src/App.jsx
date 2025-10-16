@@ -4,21 +4,21 @@ import "./App.css";
 function App() {
   // ===== Use State Variables =====
   const [tasks, setTasks] = useState([
-    "Project 1",
-    "Laundry",
-    "Walk Dogs",
-    "clean room",
+    { text:"Project 1", completed:false},
+    { text:"Laundry", completed:false},
+    { text:"Walk Dogs", completed:false},
+    { text:"clean room", completed:false},
   ]);
   const [inputValue, setInputValue] = useState("");
 
   // ===== Functions ======
   const handleAddTask = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page reload
 
-    if (inputValue.trim()) {
-      setTasks([...tasks, inputValue]);
+    if (inputValue.trim()) { // if the input isn't empty
+      setTasks([...tasks, {text:inputValue,completed:false}]); // apply setTasks to update our <tasks> state
     }
-    setInputValue("");
+    setInputValue(""); // reset input value
   };
   const handleDelete = (indexToDelete) => {
     setTasks(tasks.filter((_, index) => index !== indexToDelete));
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="container">
       <h1>My To Do List</h1>
-      <form onSubmit={handleAddTask} className="add-task-form">
+      <form onSubmit={handleAddTask} className="add-task-form"> 
         <input
           type="text"
           value={inputValue}
@@ -44,7 +44,7 @@ function App() {
       <ul className="task-list">
         {tasks.map((task, index) => (
           <li key={index} className="task-item">
-            <span className="task-text">{task}</span>
+            <span className="task-text">{task.text}</span>
             <button
               className="delete-button"
               onClick={() => handleDelete(index)}
