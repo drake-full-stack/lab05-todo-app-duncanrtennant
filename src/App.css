@@ -61,6 +61,12 @@ h1 {
   border: 1px solid #eee;
 }
 
+.task-text.completed {
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.6;
+}
+
 .task-text {
   flex: 1;
   font-size: 16px;
