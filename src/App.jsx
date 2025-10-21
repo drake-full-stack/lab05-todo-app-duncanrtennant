@@ -28,9 +28,12 @@ function App() {
       tasks.map( (task,index) => {
         // console.log(task)
         // return the toggle of indicated index, and return base elements at other indexes
-        index === indexToToggle 
-          ? {...task, completed: !task.completed} 
-          : task
+        if(index === indexToToggle){
+          return {...task, completed: !task.completed};
+        }
+        else{
+          return task;
+        } 
       })
     );
   };
